@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TeckLab166 — Blog de desenvolvimento, tutoriais práticos e estudos de caso para resolver problemas reais de tecnologia." />
+  <meta name="theme-color" content="#0d0d0d" />
+  <meta property="og:title" content="TeckLab166 — Dev Blog & Troubleshooting" />
+  <meta property="og:description" content="Aplicações reais, tutoriais e estudos de caso para transformar troubleshooting em aprendizado." />
+  <meta property="og:type" content="website" />
+  <title>TeckLab166 — Dev Blog & Troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ====== SKIP LINKS — Navegação rápida por teclado ====== -->
+  <div class="skip-links">
+    <a href="#main-content" class="skip-link">Ir para conteúdo principal</a>
+  </div>
+
+  <!-- ====== HEADER ====== -->
+  <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+
+      <a href="#home" class="logo" aria-label="TeckLab166 — Página inicial">
+        <span aria-hidden="true" class="logo-bracket">[</span>
+        <span class="logo-text">TeckLab</span><span class="logo-accent">166</span>
+        <span aria-hidden="true" class="logo-bracket">]</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
+        <ul class="nav-list" role="list">
+          <li><a href="#home"      class="nav-link" aria-current="page">Home</a></li>
+          <li><a href="#apps"      class="nav-link">Aplicações</a></li>
+          <li><a href="#tutorials" class="nav-link">Tutoriais</a></li>
+          <li><a href="#cases"     class="nav-link">Casos</a></li>
+          <li><a href="#about"     class="nav-link">Sobre</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="search-toggle" aria-label="Abrir busca" aria-expanded="false" aria-controls="search-dialog">
+          <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+
+        <button class="icon-btn" id="contrast-toggle" aria-label="Ativar alto contraste" aria-pressed="false" title="Alto contraste">
+          <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor" stroke="none"/></svg>
+        </button>
+
+        <button class="icon-btn" id="font-toggle" aria-label="Aumentar tamanho da fonte" aria-pressed="false" title="Aumentar fonte">
+          <span aria-hidden="true" class="font-icon">A+</span>
+        </button>
+
+        <button class="hamburger" id="menu-btn" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile nav -->
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Menu móvel" aria-hidden="true" hidden>
+      <ul class="mobile-nav-list" role="list">
+        <li><a href="#home"      class="mobile-nav-link">Home</a></li>
+        <li><a href="#apps"      class="mobile-nav-link">Aplicações</a></li>
+        <li><a href="#tutorials" class="mobile-nav-link">Tutoriais</a></li>
+        <li><a href="#cases"     class="mobile-nav-link">Casos</a></li>
+        <li><a href="#about"     class="mobile-nav-link">Sobre</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ====== SEARCH DIALOG ====== -->
+  <div class="search-overlay" id="search-dialog" role="dialog" aria-modal="true" aria-label="Busca no site" hidden>
+    <div class="search-box">
+      <form class="search-form" id="search-form" role="search" aria-label="Buscar no TeckLab166">
+        <label for="search-input" class="sr-only">Digite sua busca</label>
+        <input type="search" id="search-input" class="search-input" placeholder="Buscar posts, tutoriais, troubleshooting..." autocomplete="off" />
+        <button type="submit" class="search-submit" aria-label="Realizar busca">
+          <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+      </form>
+      <button class="search-close" id="search-close" aria-label="Fechar busca">✕</button>
+      <div id="search-results" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <!-- ====== MAIN ====== -->
+  <main id="main-content" tabindex="-1">
+
+    <!-- HERO -->
+    <section class="hero" id="home" aria-labelledby="hero-heading">
+      <div class="hero-gallery" aria-label="Arte destaque — cachorro astronauta">
+        <figure class="gallery-card">
+          <div class="gallery-grid-overlay" aria-hidden="true"></div>
+          <img src="cãoaustronauta.png" alt="Cachorro astronauta em traje espacial realista" loading="lazy" />
+          <figcaption>
+            <div class="pill">Astro Lab</div>
+            <p>Cão astronauta — estética neon para o TeckLab166.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="hero-bg" aria-hidden="true">
+        <div class="grid-overlay"></div>
+        <div class="scanline"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-badge" role="status">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          LIVE — Novos posts toda semana
+        </div>
+
+        <h1 id="hero-heading" class="hero-title">
+          Aqui o código<br>
+          <span class="highlight">resolve o problema.</span>
+        </h1>
+
+        <p class="hero-sub">
+          Aplicações reais, tutoriais diretos ao ponto e estudos de caso para transformar troubleshooting em aprendizado.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#apps" class="btn btn-primary">Ver Projetos</a>
+          <a href="#tutorials" class="btn btn-ghost">Tutoriais <span aria-hidden="true">→</span></a>
+        </div>
+
+        <dl class="hero-stats" aria-label="Estatísticas do blog">
+          <div class="stat-item">
+            <dt class="stat-label">Posts</dt>
+            <dd class="stat-number" data-target="48">0</dd>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <dt class="stat-label">Projetos</dt>
+            <dd class="stat-number" data-target="12">0</dd>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <dt class="stat-label">Casos</dt>
+            <dd class="stat-number" data-target="23">0</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="hero-terminal" aria-hidden="true" role="presentation">
+        <div class="terminal-window">
+          <div class="terminal-titlebar">
+            <span class="t-dot t-red"></span>
+            <span class="t-dot t-yellow"></span>
+            <span class="t-dot t-green"></span>
+            <span class="t-title">tecklab166 ~ zsh</span>
+          </div>
+          <div class="terminal-body" id="terminal-body"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAG STRIP -->
+    <div class="tag-strip" role="region" aria-label="Tecnologias abordadas">
+      <div class="tag-scroll" aria-hidden="true">
+        <span class="tag-chip">JavaScript</span><span class="tag-chip">Node.js</span>
+        <span class="tag-chip">Docker</span><span class="tag-chip">Linux</span>
+        <span class="tag-chip">Python</span><span class="tag-chip">API REST</span>
+        <span class="tag-chip">Nginx</span><span class="tag-chip">Git</span>
+        <span class="tag-chip">SQL</span><span class="tag-chip">React</span>
+        <span class="tag-chip">CI/CD</span><span class="tag-chip">Shell Script</span>
+        <span class="tag-chip">TypeScript</span><span class="tag-chip">Kubernetes</span>
+        <span class="tag-chip">JavaScript</span><span class="tag-chip">Node.js</span>
+        <span class="tag-chip">Docker</span><span class="tag-chip">Linux</span>
+      </div>
+    </div>
+
+    <!-- APLICAÇÕES -->
+    <section class="section" id="apps" aria-labelledby="apps-heading">
+      <div class="container">
+        <header class="section-header">
+          <div class="section-label" aria-hidden="true">// 01</div>
+          <h2 id="apps-heading" class="section-title">Aplicações</h2>
+          <p class="section-desc">Projetos desenvolvidos para resolver problemas reais.</p>
+        </header>
+
+        <div class="cards-grid" role="list" aria-label="Lista de aplicações">
+
+          <article class="card card--featured" role="listitem" aria-labelledby="app1-title">
+            <div class="card-tag">App</div>
+            <h3 id="app1-title" class="card-title">Monitor de Serviços</h3>
+            <p class="card-desc">Painel para monitorar o status de APIs e servidores em tempo real com alertas configuráveis.</p>
+            <ul class="card-meta" aria-label="Tecnologias">
+              <li class="tech-badge">Node.js</li>
+              <li class="tech-badge">WebSocket</li>
+              <li class="tech-badge">Redis</li>
+            </ul>
+            <a href="#" class="card-link" aria-label="Ver projeto Monitor de Serviços">Ver projeto <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="card" role="listitem" aria-labelledby="app2-title">
+            <div class="card-tag">App</div>
+            <h3 id="app2-title" class="card-title">Log Analyzer CLI</h3>
+            <p class="card-desc">Ferramenta de linha de comando para parsear e filtrar logs de aplicações com suporte a regex.</p>
+            <ul class="card-meta" aria-label="Tecnologias">
+              <li class="tech-badge">Python</li>
+              <li class="tech-badge">Click</li>
+            </ul>
+            <a href="#" class="card-link" aria-label="Ver projeto Log Analyzer CLI">Ver projeto <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="card" role="listitem" aria-labelledby="app3-title">
+            <div class="card-tag">App</div>
+            <h3 id="app3-title" class="card-title">Deploy Automático</h3>
+            <p class="card-desc">Pipeline de CI/CD com rollback automático e notificações via webhook para equipes remotas.</p>
+            <ul class="card-meta" aria-label="Tecnologias">
+              <li class="tech-badge">Docker</li>
+              <li class="tech-badge">GH Actions</li>
+            </ul>
+            <a href="#" class="card-link" aria-label="Ver projeto Deploy Automático">Ver projeto <span aria-hidden="true">↗</span></a>
+          </article>
+
+          <article class="card" role="listitem" aria-labelledby="app4-title">
+            <div class="card-tag">App</div>
+            <h3 id="app4-title" class="card-title">API Rate Limiter</h3>
+            <p class="card-desc">Middleware reutilizável para Express com estratégias de sliding window e token bucket.</p>
+            <ul class="card-meta" aria-label="Tecnologias">
+              <li class="tech-badge">TypeScript</li>
+              <li class="tech-badge">Express</li>
+            </ul>
+            <a href="#" class="card-link" aria-label="Ver projeto API Rate Limiter">Ver projeto <span aria-hidden="true">↗</span></a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TUTORIAIS -->
+    <section class="section section--alt" id="tutorials" aria-labelledby="tutorials-heading">
+      <div class="container">
+        <header class="section-header">
+          <div class="section-label" aria-hidden="true">// 02</div>
+          <h2 id="tutorials-heading" class="section-title">Tutoriais</h2>
+          <p class="section-desc">Aprenda fazendo — do básico ao avançado.</p>
+        </header>
+
+        <div class="filter-bar" role="group" aria-label="Filtrar tutoriais por categoria">
+          <button class="filter-btn active" data-filter="all"      aria-pressed="true">Todos</button>
+          <button class="filter-btn" data-filter="infra"           aria-pressed="false">Infraestrutura</button>
+          <button class="filter-btn" data-filter="backend"         aria-pressed="false">Backend</button>
+          <button class="filter-btn" data-filter="devops"          aria-pressed="false">DevOps</button>
+          <button class="filter-btn" data-filter="security"        aria-pressed="false">Segurança</button>
+        </div>
+
+        <div class="post-list" id="tutorials-list" role="list" aria-label="Lista de tutoriais">
+
+          <article class="post-item" role="listitem" data-category="devops" aria-labelledby="tut1-title">
+            <div class="post-number" aria-hidden="true">01</div>
+            <div class="post-body">
+              <div class="post-tags" aria-label="Categorias">
+                <span class="post-tag">DevOps</span><span class="post-tag">Docker</span>
+              </div>
+              <h3 id="tut1-title" class="post-title">
+                <a href="#" aria-label="Ler tutorial: Docker multi-stage build para produção">Docker multi-stage build para produção</a>
+              </h3>
+              <p class="post-excerpt">Reduza o tamanho das suas imagens Docker em até 80% com builds em múltiplos estágios.</p>
+              <div class="post-footer">
+                <time datetime="2025-03-10" class="post-date">10 Mar 2025</time>
+                <span class="post-read" aria-label="Tempo estimado de leitura: 8 minutos">8 min leitura</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="post-item" role="listitem" data-category="infra" aria-labelledby="tut2-title">
+            <div class="post-number" aria-hidden="true">02</div>
+            <div class="post-body">
+              <div class="post-tags" aria-label="Categorias">
+                <span class="post-tag">Linux</span><span class="post-tag">Nginx</span>
+              </div>
+              <h3 id="tut2-title" class="post-title">
+                <a href="#" aria-label="Ler tutorial: Nginx como reverse proxy com SSL gratuito">Nginx como reverse proxy com SSL gratuito</a>
+              </h3>
+              <p class="post-excerpt">Configure HTTPS com Let's Encrypt e Nginx em menos de 15 minutos em qualquer VPS.</p>
+              <div class="post-footer">
+                <time datetime="2025-03-01" class="post-date">01 Mar 2025</time>
+                <span class="post-read" aria-label="Tempo estimado de leitura: 12 minutos">12 min leitura</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="post-item" role="listitem" data-category="backend" aria-labelledby="tut3-title">
+            <div class="post-number" aria-hidden="true">03</div>
+            <div class="post-body">
+              <div class="post-tags" aria-label="Categorias">
+                <span class="post-tag">Node.js</span><span class="post-tag">SQL</span>
+              </div>
+              <h3 id="tut3-title" class="post-title">
+                <a href="#" aria-label="Ler tutorial: Migrations com controle de versão no PostgreSQL">Migrations com controle de versão no PostgreSQL</a>
+              </h3>
+              <p class="post-excerpt">Como manter seu schema de banco sincronizado entre ambientes sem dor de cabeça.</p>
+              <div class="post-footer">
+                <time datetime="2025-02-20" class="post-date">20 Fev 2025</time>
+                <span class="post-read" aria-label="Tempo estimado de leitura: 10 minutos">10 min leitura</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="post-item" role="listitem" data-category="security" aria-labelledby="tut4-title">
+            <div class="post-number" aria-hidden="true">04</div>
+            <div class="post-body">
+              <div class="post-tags" aria-label="Categorias">
+                <span class="post-tag">Segurança</span><span class="post-tag">Linux</span>
+              </div>
+              <h3 id="tut4-title" class="post-title">
+                <a href="#" aria-label="Ler tutorial: Hardening básico de servidor Linux">Hardening básico de servidor Linux</a>
+              </h3>
+              <p class="post-excerpt">Checklist essencial para proteger seu servidor antes de expô-lo à internet.</p>
+              <div class="post-footer">
+                <time datetime="2025-02-14" class="post-date">14 Fev 2025</time>
+                <span class="post-read" aria-label="Tempo estimado de leitura: 15 minutos">15 min leitura</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="post-item" role="listitem" data-category="devops" aria-labelledby="tut5-title">
+            <div class="post-number" aria-hidden="true">05</div>
+            <div class="post-body">
+              <div class="post-tags" aria-label="Categorias">
+                <span class="post-tag">CI/CD</span><span class="post-tag">GitHub</span>
+              </div>
+              <h3 id="tut5-title" class="post-title">
+                <a href="#" aria-label="Ler tutorial: GitHub Actions do zero ao deploy automatizado">GitHub Actions do zero ao deploy automatizado</a>
+              </h3>
+              <p class="post-excerpt">Crie pipelines completos com testes, build e deploy sem pagar nada no plano gratuito.</p>
+              <div class="post-footer">
+                <time datetime="2025-02-05" class="post-date">05 Fev 2025</time>
+                <span class="post-read" aria-label="Tempo estimado de leitura: 18 minutos">18 min leitura</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ESTUDOS DE CASO -->
+    <section class="section" id="cases" aria-labelledby="cases-heading">
+      <div class="container">
+        <header class="section-header">
+          <div class="section-label" aria-hidden="true">// 03</div>
+          <h2 id="cases-heading" class="section-title">Estudos de Caso</h2>
+          <p class="section-desc">Problemas reais, soluções documentadas.</p>
+        </header>
+
+        <div class="cases-grid" role="list" aria-label="Lista de estudos de caso">
+
+          <article class="case-card" role="listitem" aria-labelledby="case1-title">
+            <div class="case-status case-status--resolved" aria-label="Status: Resolvido">
+              <span aria-hidden="true">●</span> Resolvido
+            </div>
+            <div class="case-number" aria-hidden="true">#001</div>
+            <h3 id="case1-title" class="case-title">Vazamento de memória em produção</h3>
+            <p class="case-desc">Aplicação Node.js consumindo 4 GB de RAM após 48h em produção. Investigação com heap snapshots e solução definitiva.</p>
+            <ul class="case-tags" aria-label="Tecnologias envolvidas">
+              <li class="tech-badge">Node.js</li>
+              <li class="tech-badge">V8</li>
+              <li class="tech-badge">Heap Profiling</li>
+            </ul>
+            <a href="#" class="case-link" aria-label="Ler estudo de caso: Vazamento de memória em produção">Ler caso completo <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="case-card" role="listitem" aria-labelledby="case2-title">
+            <div class="case-status case-status--resolved" aria-label="Status: Resolvido">
+              <span aria-hidden="true">●</span> Resolvido
+            </div>
+            <div class="case-number" aria-hidden="true">#002</div>
+            <h3 id="case2-title" class="case-title">Queries SQL lentas no pico de tráfego</h3>
+            <p class="case-desc">Banco PostgreSQL travando com 500 usuários simultâneos. Análise de EXPLAIN ANALYZE e otimização de índices.</p>
+            <ul class="case-tags" aria-label="Tecnologias envolvidas">
+              <li class="tech-badge">PostgreSQL</li>
+              <li class="tech-badge">EXPLAIN</li>
+              <li class="tech-badge">Indexing</li>
+            </ul>
+            <a href="#" class="case-link" aria-label="Ler estudo de caso: Queries SQL lentas no pico de tráfego">Ler caso completo <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="case-card" role="listitem" aria-labelledby="case3-title">
+            <div class="case-status case-status--wip" aria-label="Status: Em andamento">
+              <span aria-hidden="true">●</span> Em andamento
+            </div>
+            <div class="case-number" aria-hidden="true">#003</div>
+            <h3 id="case3-title" class="case-title">Falha silenciosa em microserviço</h3>
+            <p class="case-desc">Serviço retornando 200 OK mas sem executar a lógica de negócio. Rastreamento com distributed tracing.</p>
+            <ul class="case-tags" aria-label="Tecnologias envolvidas">
+              <li class="tech-badge">OpenTelemetry</li>
+              <li class="tech-badge">Jaeger</li>
+              <li class="tech-badge">gRPC</li>
+            </ul>
+            <a href="#" class="case-link" aria-label="Acompanhar estudo de caso em andamento: Falha silenciosa em microserviço">Acompanhar caso <span aria-hidden="true">→</span></a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section class="section section--alt" id="about" aria-labelledby="about-heading">
+      <div class="container about-container">
+        <header class="section-header">
+          <div class="section-label" aria-hidden="true">// 04</div>
+          <h2 id="about-heading" class="section-title">Sobre o Lab</h2>
+        </header>
+
+        <div class="about-grid">
+          <div class="about-text">
+            <p class="about-lead">
+              O <strong>TeckLab166</strong> nasceu da necessidade de documentar soluções enquanto elas ainda estão frescas.
+            </p>
+            <p>Aqui você encontra o que realmente acontece no dia a dia: o erro de produção às 2h da manhã, a query que destruía o banco, o deploy que nunca subia. Tudo documentado com contexto, causa raiz e solução.</p>
+            <p>Sem floreio, sem papo de influencer tech. Código que funciona e problemas que ensinaram algo.</p>
+            <a href="#newsletter-form" class="btn btn-primary">Assinar Newsletter</a>
+          </div>
+
+          <div class="about-values">
+            <div class="value-item">
+              <div class="value-icon" aria-hidden="true">⚡</div>
+              <h3 class="value-title">Direto ao ponto</h3>
+              <p class="value-desc">Sem introdução de 10 parágrafos. O problema, a solução, o código.</p>
+            </div>
+            <div class="value-item">
+              <div class="value-icon" aria-hidden="true">🔍</div>
+              <h3 class="value-title">Causa raiz sempre</h3>
+              <p class="value-desc">Não só o fix — entenda por que aconteceu para nunca repetir.</p>
+            </div>
+            <div class="value-item">
+              <div class="value-icon" aria-hidden="true">📦</div>
+              <h3 class="value-title">Reproduzível</h3>
+              <p class="value-desc">Todo exemplo pode ser executado. Repositórios abertos, sem truques.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter-section" aria-labelledby="newsletter-heading">
+      <div class="container">
+        <div class="newsletter-box">
+          <h2 id="newsletter-heading" class="newsletter-title">Não perca nenhum post<span aria-hidden="true">.</span></h2>
+          <p class="newsletter-sub">Novos tutoriais e casos direto no seu e-mail. Sem spam.</p>
+
+          <form class="newsletter-form" id="newsletter-form" aria-label="Formulário de inscrição na newsletter" novalidate>
+            <div class="form-group">
+              <label for="newsletter-email" class="sr-only">Seu endereço de e-mail</label>
+              <input
+                type="email"
+                id="newsletter-email"
+                name="email"
+                class="newsletter-input"
+                placeholder="seu@email.com"
+                required
+                autocomplete="email"
+                aria-describedby="email-hint email-error"
+                aria-required="true"
+              />
+              <p id="email-hint" class="field-hint">Nunca compartilharemos seu e-mail.</p>
+              <p class="field-error" id="email-error" role="alert" aria-live="assertive" hidden></p>
+            </div>
+            <button type="submit" class="btn btn-primary newsletter-btn">Inscrever-se</button>
+          </form>
+          <div id="newsletter-feedback" role="status" aria-live="polite" aria-atomic="true"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#home" class="logo footer-logo" aria-label="TeckLab166 — voltar ao topo">
+          <span aria-hidden="true" class="logo-bracket">[</span>
+          <span class="logo-text">TeckLab</span><span class="logo-accent">166</span>
+          <span aria-hidden="true" class="logo-bracket">]</span>
+        </a>
+        <p class="footer-tagline">Código que resolve. Problemas que ensinam.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Links do rodapé">
+        <div class="footer-col">
+          <h3 class="footer-col-title">Conteúdo</h3>
+          <ul role="list">
+            <li><a href="#apps">Aplicações</a></li>
+            <li><a href="#tutorials">Tutoriais</a></li>
+            <li><a href="#cases">Estudos de Caso</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">Lab</h3>
+          <ul role="list">
+            <li><a href="#about">Sobre</a></li>
+            <li><a href="#" aria-label="GitHub do TeckLab166 (abre em nova aba)" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="#" aria-label="Feed RSS do blog">RSS Feed</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">Acessibilidade</h3>
+          <ul role="list">
+            <li><button class="footer-a11y-btn" id="footer-contrast" aria-pressed="false">Alto Contraste</button></li>
+            <li><button class="footer-a11y-btn" id="footer-font" aria-pressed="false">Texto Maior</button></li>
+            <li><button class="footer-a11y-btn" id="footer-motion" aria-pressed="false">Reduzir Movimento</button></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p class="footer-copy">
+          &copy; <span id="current-year"></span> TeckLab166 —
+          Feito com <span aria-label="amor">♥</span> e muito <code>console.log()</code>
+        </p>
+        <p>
+          <a class="wcag-badge" href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank" rel="noopener noreferrer"
+            aria-label="Conforme WCAG 2.1 nível AA (abre em nova aba)">
+            WCAG 2.1 AA
+          </a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Voltar ao topo -->
+  <button class="back-to-top" id="back-to-top" aria-label="Voltar ao topo da página" hidden>
+    <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
